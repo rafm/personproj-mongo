@@ -1,12 +1,12 @@
 package com.daitangroup.initproj.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
 
-@Entity
+//@Entity
 public class Person {
 
-	@Id
+//	@Id
 	private Integer id;
 	
 	private String name;
