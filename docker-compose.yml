@@ -1,0 +1,28 @@
+version: "3"
+services:
+  mongo:
+    image: mongo
+    container_name: mongo-person
+    ports:
+      - "27017"
+    networks:
+      - person-network
+      
+  person-proj:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    image: rmaia/person-project-mongo
+    container_name: person-proj-mongo
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=mongo-person
+    networks:
+      - person-network
+    depends_on:
+      - mongo
+      
+networks:
+  person-network:
+    driver: bridge
