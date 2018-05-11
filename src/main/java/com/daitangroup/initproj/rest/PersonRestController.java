@@ -54,20 +54,19 @@ public class PersonRestController {
 		return ResponseEntity.created(URI.create("/person/"+person.getId())).build();
 	}
 	
+	// TODO Concurrency
 	// TODO ETag HTTP 204
 	@PutMapping("/{id}")
 	public ResponseEntity<String> update(@PathVariable String id, @RequestBody @Valid Person person) {
-		Optional<Person> result = personRepository.findById(id);
-		if (!result.isPresent()) {
-			return ResponseEntity.notFound().build(); 
-		}
+		boolean isUpdatingPerson = personRepository.existsById(id);
 		
 		person.setId(id);
 		
 		personRepository.save(person);
-		return ResponseEntity.noContent().build();
+		return isUpdatingPerson ? ResponseEntity.noContent().build() : ResponseEntity.created(URI.create("/person/"+person.getId())).build();
 	}
 	
+	// TODO Concurrency
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> delete(@PathVariable String id) {
 		if (personRepository.existsById(id)) {
