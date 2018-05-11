@@ -14,6 +14,13 @@ public class Person {
 	
 	private String country;
 
+	public Person() {}
+	
+	public Person(String name, String country) {
+		this.name = name;
+		this.country = country;
+	}
+
 	public String getId() {
 		return id;
 	}
