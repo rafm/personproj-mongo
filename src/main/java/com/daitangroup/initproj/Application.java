@@ -6,12 +6,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.daitangroup.initproj.model.Person;
-import com.daitangroup.initproj.repository.PersonRepository;
+import com.daitangroup.initproj.repository.elasticsearch.PersonElasticsearchRepository;
+import com.daitangroup.initproj.repository.mongo.PersonMongoRepository;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
-	@Autowired private PersonRepository personRepository;
+	@Autowired private PersonMongoRepository personMongoRepository;
+
+	@Autowired private PersonElasticsearchRepository personElasticsearchRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -19,11 +22,21 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		personRepository.deleteAll();
+		personMongoRepository.deleteAll();
+		personElasticsearchRepository.deleteAll();
 		
-		personRepository.insert(new Person("Joaquim", "BR"));
-		personRepository.insert(new Person("Bran", "US"));
-		personRepository.insert(new Person("Yushin", "JP"));
-		personRepository.insert(new Person("Pablo", "ES"));
+		personElasticsearchRepository.save(
+			personMongoRepository.save(new Person("Joaquim", "BR"))
+		);
+		
+		personElasticsearchRepository.save(
+			personMongoRepository.save(new Person("Bran", "US"))
+		);
+		personElasticsearchRepository.save(
+			personMongoRepository.save(new Person("Yushin", "JP"))
+		);
+		personElasticsearchRepository.save(
+			personMongoRepository.save(new Person("Pablo", "ES"))
+		);
 	}
 }
