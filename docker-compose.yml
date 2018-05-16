@@ -8,6 +8,30 @@ services:
     networks:
       - person-network
       
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.4
+    container_name: elasticsearch-person
+    ports:
+      - "9200"
+      - "9300"
+    environment:
+      - "discovery.type=single-node"
+      - "cluster.name=elasticsearch"
+    networks:
+      - person-network
+      
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:6.2.4
+    container_name: kibana-person
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch-person:9200
+    networks:
+      - person-network
+    depends_on:
+      - elasticsearch
+      
   person-proj:
     build:
       dockerfile: ./Dockerfile
