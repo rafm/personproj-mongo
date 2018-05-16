@@ -3,7 +3,9 @@ package com.daitangroup.initproj.model;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
 
+@Document(indexName="catalog", type="person")
 public class Person {
 
 	@Id
