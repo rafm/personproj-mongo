@@ -22,25 +22,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daitangroup.initproj.model.Person;
-import com.daitangroup.initproj.repository.PersonRepository;
+import com.daitangroup.initproj.repository.elasticsearch.PersonElasticsearchRepository;
+import com.daitangroup.initproj.repository.mongo.PersonMongoRepository;
 
 @RestController
 @RequestMapping("/person")
 public class PersonRestController {
 
-	@Autowired private PersonRepository personRepository;
+	@Autowired private PersonMongoRepository personMongoRepository;
+
+	@Autowired private PersonElasticsearchRepository personElasticsearchRepository;
+	
+	@GetMapping("/elastic")
+	public Iterable<Person> findInElasticsearch() {
+		return personElasticsearchRepository.findAll();
+	}
 	
 	@GetMapping
 	public Iterable<Person> findAll(@RequestParam(defaultValue="0") @Min(0) int page,
 			@RequestParam(defaultValue="20") @Min(1) @Max(100) int size,
 			@RequestParam(defaultValue="ASC") Direction sort,
 			@RequestParam(defaultValue="name") String... sortingFields) {
-		return personRepository.findAll(PageRequest.of(page, size, sort, sortingFields)).getContent();
+		return personMongoRepository.findAll(PageRequest.of(page, size, sort, sortingFields)).getContent();
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Person> findById(@PathVariable String id) {
-		Optional<Person> result = personRepository.findById(id);
+		Optional<Person> result = personMongoRepository.findById(id);
 		return result.isPresent() ? ResponseEntity.ok(result.get()) : ResponseEntity.notFound().build();
 	}
 	
@@ -49,8 +57,9 @@ public class PersonRestController {
 		if (person.getId() != null) {
 			return ResponseEntity.badRequest().build();
 		}
-		
-		personRepository.save(person);
+
+		personMongoRepository.save(person);
+		personElasticsearchRepository.save(person);
 		return ResponseEntity.created(URI.create("/person/"+person.getId())).build();
 	}
 	
@@ -58,19 +67,24 @@ public class PersonRestController {
 	// TODO ETag HTTP 204
 	@PutMapping("/{id}")
 	public ResponseEntity<String> update(@PathVariable String id, @RequestBody @Valid Person person) {
-		boolean isUpdatingPerson = personRepository.existsById(id);
+		boolean isUpdatingPerson = personMongoRepository.existsById(id);
 		
 		person.setId(id);
-		
-		personRepository.save(person);
+
+		personMongoRepository.save(person);
+		personElasticsearchRepository.save(person);
 		return isUpdatingPerson ? ResponseEntity.noContent().build() : ResponseEntity.created(URI.create("/person/"+person.getId())).build();
 	}
 	
 	// TODO Concurrency
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> delete(@PathVariable String id) {
-		if (personRepository.existsById(id)) {
-			personRepository.deleteById(id);
+		if (personElasticsearchRepository.existsById(id)) {
+			personElasticsearchRepository.deleteById(id);
+		}
+		
+		if (personMongoRepository.existsById(id)) {
+			personMongoRepository.deleteById(id);
 		}
 		
 		return ResponseEntity.ok().build();

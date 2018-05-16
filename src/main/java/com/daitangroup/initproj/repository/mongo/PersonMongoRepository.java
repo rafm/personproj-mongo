@@ -1,4 +1,4 @@
-package com.daitangroup.initproj.repository;
+package com.daitangroup.initproj.repository.mongo;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
@@ -6,4 +6,4 @@ import org.springframework.stereotype.Repository;
 import com.daitangroup.initproj.model.Person;
 
 @Repository
-public interface PersonRepository extends MongoRepository<Person, String> {}
+public interface PersonMongoRepository extends MongoRepository<Person, String> {}
