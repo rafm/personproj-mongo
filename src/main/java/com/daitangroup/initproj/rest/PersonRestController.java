@@ -79,12 +79,12 @@ public class PersonRestController {
 	// TODO Concurrency
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> delete(@PathVariable String id) {
-		if (personElasticsearchRepository.existsById(id)) {
-			personElasticsearchRepository.deleteById(id);
-		}
-		
 		if (personMongoRepository.existsById(id)) {
 			personMongoRepository.deleteById(id);
+		}
+		
+		if (personElasticsearchRepository.existsById(id)) {
+			personElasticsearchRepository.deleteById(id);
 		}
 		
 		return ResponseEntity.ok().build();
