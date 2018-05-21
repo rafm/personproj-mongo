@@ -16,7 +16,7 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 
 @Configuration
 @EnableElasticsearchRepositories
-public class Config {
+public class ElasticsearchConfiguration {
 
 	@Value("${elasticsearch.clusterName:elasticsearch}")
 	private String clusterName;
