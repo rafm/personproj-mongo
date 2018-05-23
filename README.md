@@ -10,6 +10,6 @@ Docker local commands:
  
 - Start local Kibana container: docker run --name kibana-person-local -p 5601:5601 --network person-network -e ELASTICSEARCH_URL=http://elasticsearch-person-local:9200 -d docker.elastic.co/kibana/kibana-oss:6.2.4
 
-- Build Spring Boot app from Dockerfile: docker build -t rafm/person-project-mongo .
+- Build Spring Boot app from Dockerfile: docker build -t rafm/person-project-mongo-local .
  
-- Start local Spring Boot app container: docker run --name person-project-mongo-local -p 8080:8080 --network person-network -e DB_HOST=mongo-person-local -d rafm/person-project-mongo
+- Start local Spring Boot app container: docker run --name person-project-mongo-local -p 8080:8080 --network person-network -e DB_HOST=mongo-person-local -e ELASTICSEARCH_HOST=elasticsearch-person-local -d rafm/person-project-mongo-local
