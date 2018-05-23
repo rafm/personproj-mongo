@@ -1,6 +1,6 @@
 [
-{"_class" : "com.daitangroup.initproj.model.Person", "id" : "5b02d6652b6f097228978fea", "name" : "Pablo", "country" : "ES"},
-{"_class" : "com.daitangroup.initproj.model.Person", "id" : "5b02d6652b6f097228978fe7", "name" : "Joaquim", "country" : "BR"},
-{"_class" : "com.daitangroup.initproj.model.Person", "id" : "5b02d6652b6f097228978fe9", "name" : "Yushin", "country" : "JP"},
-{"_class" : "com.daitangroup.initproj.model.Person", "id" : "5b02d6652b6f097228978fe8", "name" : "Bran", "country" : "US"}
+{"_class" : "com.github.rafm.personproj.model.Person", "id" : "5b02d6652b6f097228978fea", "name" : "Pablo", "country" : "ES"},
+{"_class" : "com.github.rafm.personproj.model.Person", "id" : "5b02d6652b6f097228978fe7", "name" : "Joaquim", "country" : "BR"},
+{"_class" : "com.github.rafm.personproj.model.Person", "id" : "5b02d6652b6f097228978fe9", "name" : "Yushin", "country" : "JP"},
+{"_class" : "com.github.rafm.personproj.model.Person", "id" : "5b02d6652b6f097228978fe8", "name" : "Bran", "country" : "US"}
 ]

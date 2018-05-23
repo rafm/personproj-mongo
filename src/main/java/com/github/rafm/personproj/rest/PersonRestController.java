@@ -1,4 +1,4 @@
-package com.daitangroup.initproj.rest;
+package com.github.rafm.personproj.rest;
 
 import java.net.URI;
 import java.util.Optional;
@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.daitangroup.initproj.model.Person;
-import com.daitangroup.initproj.service.PersonService;
+import com.github.rafm.personproj.model.Person;
+import com.github.rafm.personproj.service.PersonService;
 
 @RestController
 @RequestMapping("/person")

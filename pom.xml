@@ -2,11 +2,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.daitangroup</groupId>
-	<artifactId>person-project</artifactId>
+	<groupId>com.github.rafm</groupId>
+	<artifactId>personproj</artifactId>
 	<version>1.0.0</version>
 
-	<name>Daitan initial project</name>
+	<name>Person project</name>
+	<description>Sample project with Spring, MongoDB and Elasticsearch</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

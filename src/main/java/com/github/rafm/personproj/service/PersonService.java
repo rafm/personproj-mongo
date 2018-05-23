@@ -1,4 +1,4 @@
-package com.daitangroup.initproj.service;
+package com.github.rafm.personproj.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
-import com.daitangroup.initproj.model.Person;
-import com.daitangroup.initproj.repository.elasticsearch.PersonElasticsearchRepository;
-import com.daitangroup.initproj.repository.mongo.PersonMongoRepository;
+import com.github.rafm.personproj.model.Person;
+import com.github.rafm.personproj.repository.elasticsearch.PersonElasticsearchRepository;
+import com.github.rafm.personproj.repository.mongo.PersonMongoRepository;
 
 @Service
 public class PersonService {

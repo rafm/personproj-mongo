@@ -36,7 +36,7 @@ services:
     build:
       dockerfile: ./Dockerfile
       context: .
-    image: rmaia/person-project-mongo
+    image: rafm/person-project-mongo
     container_name: person-proj-mongo
     ports:
       - "8080:8080"

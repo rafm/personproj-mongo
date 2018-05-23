@@ -1,4 +1,4 @@
-package com.daitangroup.initproj.repository.mongo;
+package com.github.rafm.personproj.repository.mongo;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

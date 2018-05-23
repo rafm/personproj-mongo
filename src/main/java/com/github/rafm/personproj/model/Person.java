@@ -1,4 +1,4 @@
-package com.daitangroup.initproj.model;
+package com.github.rafm.personproj.model;
 
 import javax.validation.constraints.NotNull;
 

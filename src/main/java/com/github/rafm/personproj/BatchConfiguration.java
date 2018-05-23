@@ -1,4 +1,4 @@
-package com.daitangroup.initproj;
+package com.github.rafm.personproj;
 import java.util.Collections;
 
 import org.springframework.batch.core.Job;
@@ -14,8 +14,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import com.daitangroup.initproj.model.Person;
-import com.daitangroup.initproj.repository.elasticsearch.PersonElasticsearchRepository;
+import com.github.rafm.personproj.model.Person;
+import com.github.rafm.personproj.repository.elasticsearch.PersonElasticsearchRepository;
 
 @Configuration
 @EnableBatchProcessing

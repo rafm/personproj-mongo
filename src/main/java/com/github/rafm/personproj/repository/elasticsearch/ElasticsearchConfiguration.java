@@ -1,4 +1,4 @@
-package com.daitangroup.initproj.repository.elasticsearch;
+package com.github.rafm.personproj.repository.elasticsearch;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
