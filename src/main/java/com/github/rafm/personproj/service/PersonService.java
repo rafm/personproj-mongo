@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.rafm.personproj.model.Person;
 import com.github.rafm.personproj.repository.elasticsearch.PersonElasticsearchRepository;
@@ -36,12 +37,14 @@ public class PersonService {
 	 * 
 	 * @param person to register or update data
 	 */
+	@Transactional
 	public void registerOrUpdate(Person person) {
 		personMongoRepository.save(person);
 		personElasticsearchRepository.save(person);
 	}
 	
 	// TODO consistency
+	@Transactional
 	public void remove(String id) {
 		if (personMongoRepository.existsById(id)) {
 			personMongoRepository.deleteById(id);
